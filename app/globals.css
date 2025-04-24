@@ -1,0 +1,521 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 221.2 83.2% 53.3%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 221.2 83.2% 53.3%;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 217.2 91.2% 59.8%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 224.3 76.3% 48%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Mobile sidebar animations */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.mobile-sidebar-enter {
+  animation: slideIn 0.3s ease forwards;
+}
+
+.mobile-sidebar-exit {
+  animation: slideOut 0.3s ease forwards;
+}
+
+/* Menu item hover animations */
+.menu-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-item::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: hsl(var(--soft-amber));
+  transition: width 0.3s ease;
+}
+
+.menu-item:hover::after {
+  width: 100%;
+}
+
+/* Modal animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes scaleOut {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: translate(-50%, -50%) scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleOut {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(0.95);
+    opacity: 0;
+  }
+}
+
+/* Add these styles to improve tab animations */
+@keyframes fadeInTab {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.tab-content-enter {
+  animation: fadeInTab 0.3s ease forwards;
+}
+
+/* Improve modal animations */
+@keyframes slideInDown {
+  from {
+    transform: translateY(-20px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideOutUp {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-20px);
+  }
+}
+
+/* Page transition animations */
+@keyframes fadeInPage {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.page-transition-enter {
+  animation: fadeInPage 0.3s ease forwards;
+}
+
+/* Update dropdown animation keyframes for slower, more deliberate transitions */
+@keyframes dropdownEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}
+
+@keyframes dropdownExit {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+  }
+}
+
+.dropdown-enter {
+  animation: dropdownEnter 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  transform-origin: top;
+}
+
+.dropdown-exit {
+  animation: dropdownExit 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  transform-origin: top;
+}
+
+/* Add overlay animation for dropdown backdrops */
+@keyframes overlayEnter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes overlayExit {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.overlay-enter {
+  animation: overlayEnter 0.15s ease forwards;
+}
+
+.overlay-exit {
+  animation: overlayExit 0.15s ease forwards;
+}
+
+.dropdown-shadow {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Dropdown menu item hover effect */
+.dropdown-item {
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background-color: rgba(245, 166, 35, 0.1);
+}
+
+.dropdown-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 0;
+  background-color: #f5a623;
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+
+.dropdown-item:hover::before {
+  width: 3px;
+  opacity: 1;
+}
+
+/* Custom colors */
+.bg-soft-amber {
+  background-color: #f5a623;
+}
+
+.text-soft-amber {
+  color: #f5a623;
+}
+
+.bg-pale-stone {
+  background-color: #f5f5f0;
+}
+
+.text-graphite {
+  color: #333333;
+}
+
+.text-drift-gray {
+  color: #666666;
+}
+
+.border-earth-beige {
+  border-color: #e5e5e0;
+}
+
+.hover\:bg-soft-amber\/90:hover {
+  background-color: rgba(245, 166, 35, 0.9);
+}
+
+.focus\:ring-soft-amber:focus {
+  --tw-ring-color: #f5a623;
+}
+
+.focus\:border-soft-amber:focus {
+  border-color: #f5a623;
+}
+
+.hover\:text-soft-amber:hover {
+  color: #f5a623;
+}
+
+.peer-checked\:border-soft-amber:peer-checked {
+  border-color: #f5a623;
+}
+
+.peer-checked\:text-soft-amber:peer-checked {
+  color: #f5a623;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Add this to the end of your globals.css file */
+.translate-y-full {
+  transform: translateY(100%);
+}
+
+.translate-y-0 {
+  transform: translateY(0);
+}
+
+.transition-transform {
+  transition-property: transform;
+}
+
+.duration-300 {
+  transition-duration: 300ms;
+}
+
+/* Record page animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.record-card-hover {
+  transition: all 0.3s ease;
+}
+
+.record-card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.record-image-zoom {
+  transition: transform 0.5s ease;
+}
+
+.record-card-hover:hover .record-image-zoom {
+  transform: scale(1.05);
+}
+
+/* Add these animation keyframes to the end of the file */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes scaleOut {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
