@@ -10,7 +10,7 @@ const nextConfig = {
     unoptimized: true, // Needed for static exports
   },
   // Add these new configurations:
-  output: 'export', // Enables static export
+  output: 'standalone', // Enables static export
   trailingSlash: true, // Recommended for Firebase Hosting
   env: {
     // Expose only the public Firebase config variables
